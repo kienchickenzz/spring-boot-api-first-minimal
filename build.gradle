@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':contract')
+
+    implementation libs.spring.starter.web
+    implementation libs.spring.starter.validation
+    implementation libs.springdoc.openapi.webmvc.ui
+
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+
+    testImplementation libs.spring.starter.test
+}
