@@ -1,3 +1,60 @@
 spring:
-  application:
-    name: api-first
+    application:
+        name: crud-api-first
+
+    autoconfigure:
+        exclude:
+        - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: false
+        open-in-view: false
+        properties:
+            hibernate:
+                format_sql: true
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+
+    datasource:
+        write:
+            url: jdbc:postgresql://127.0.0.1:5000/lab
+            username: postgres
+            password: postgrespass
+            driver-class-name: org.postgresql.Driver
+            hikari:
+                pool-name: WriteHikariPool
+                maximum-pool-size: 10
+                minimum-idle: 5
+                connection-timeout: 30000
+                idle-timeout: 30000
+                max-lifetime: 60000
+                keepalive-time: 30000
+                validation-timeout: 5000
+
+        read:
+            url: jdbc:postgresql://127.0.0.1:5001/lab
+            username: postgres
+            password: postgrespass
+            driver-class-name: org.postgresql.Driver
+            hikari:
+                pool-name: ReadHikariPool
+                maximum-pool-size: 20
+                minimum-idle: 5
+                connection-timeout: 30000
+                idle-timeout: 30000
+                max-lifetime: 60000
+                keepalive-time: 30000
+                validation-timeout: 5000
+
+springdoc:
+    api-docs:
+        path: /api-docs
+    swagger-ui:
+        path: /docs.html
+        operations-sorter: method
+
+logging:
+    level:
+        com.example.api_first.config.datasource: DEBUG
+        org.springframework.jdbc.datasource: DEBUG

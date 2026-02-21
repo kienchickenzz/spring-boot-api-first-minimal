@@ -13,10 +13,16 @@ dependencies {
 
     implementation libs.spring.starter.web
     implementation libs.spring.starter.validation
+    implementation libs.spring.starter.aop
+    implementation libs.spring.starter.jdbc
+    implementation libs.spring.starter.data.jpa
+    
     implementation libs.springdoc.openapi.webmvc.ui
 
     compileOnly libs.lombok
     annotationProcessor libs.lombok
 
     testImplementation libs.spring.starter.test
+
+    runtimeOnly libs.postgresql
 }
